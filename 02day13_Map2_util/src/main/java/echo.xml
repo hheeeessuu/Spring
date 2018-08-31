@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="echo" class="com.app.EchoBean">
+		<constructor-arg name="x" value="홍길동map" />
+	</bean>
+	<bean id="echo2" class="com.app.EchoBean">
+		<constructor-arg name="x" value="이순신map" />
+	</bean>
+	<bean id="echo3" class="com.app.EchoBean">
+		<constructor-arg name="x" value="유관순map" />
+	</bean>
+	
+	<util:map id="xxx">
+		<entry key="one" value-ref="echo" /> 
+         <entry key="two" value-ref="echo2" /> 
+         <entry key="three">
+          <ref bean="echo3"/> 
+         </entry> 
+	</util:map>
+
+	<bean id="another" class="com.app.AnotherBean">
+		<property name="map" ref="xxx"/>
+	</bean>
+
+</beans>

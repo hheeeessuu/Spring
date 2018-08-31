@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="xxx" class="com.app.EchoBean">
+		<property name="mesg" value="이순신"/>
+	</bean>
+	
+	<!-- 3. SqEL : 다른 빈의 property 참조 -->
+	<bean id="echo" class="com.app.EchoBean">
+		<property name="mesg" value="#{xxx.mesg}"/>
+	</bean>
+	
+	<!-- 2. SqEL : 다른 빈 참조시 -->
+	<bean id="another" class="com.app.AnotherBean">
+		<property name="echoBean" value="#{echo}" />
+	</bean>
+</beans>

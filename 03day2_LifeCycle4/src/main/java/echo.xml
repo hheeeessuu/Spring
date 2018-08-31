@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- init destroy 함수 어노테이션을 사용하기 위해서 -->
+ <context:annotation-config/>
+
+ <bean id="aaa" class="com.app.EchoBean" init-method="xxx" destroy-method="yyy">
+  <property name="mesg" value="홍길동" />
+ </bean>
+
+
+
+</beans>

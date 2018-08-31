@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="a" class="com.app.EchoBean" p:name="홍길동" p:age="20"/>
+	<bean id="b" class="com.app.EchoBean" p:name="이순" p:age="30"/>
+	<bean id="c" class="com.app.EchoBean" p:name="유관순" p:age="40"/>
+	<bean id="d" class="com.app.EchoBean" p:name="홍길동" p:age="50"/>
+	<bean id="e" class="com.app.EchoBean" p:name="정조" p:age="60"/>
+	
+	<util:list id="xxx">
+		<ref bean="a"/>
+		<ref bean="b"/>
+		<ref bean="c"/>
+		<ref bean="d"/>
+		<ref bean="e"/>
+	</util:list>
+	
+	<!-- 8.Collection projection -->
+	<bean id="kkk" class="com.app.EchoBeanName">
+		<!-- selection 먼저 projection을 나중에 projection을 먼저하면 문자열이기 때문에 selection을 할수 없다. -->
+		<property name="names" value="#{xxx.?[name.length()==2].![name]}"/>
+	</bean>
+	
+	
+	<!-- 7. Collection 필터링(selection) .?[조건] -->
+	<bean id="another4" class="com.app.AnotherBean">
+		<property name="list" value="#{xxx.?[name.equals('홍길동') and age == 50]}"/>
+	</bean>
+	
+	<bean id="another3" class="com.app.AnotherBean">
+		<property name="list" value="#{xxx.?[name.length() == 2]}"/>
+	</bean>
+	
+	<bean id="another2" class="com.app.AnotherBean">
+		<property name="list" value="#{xxx.?[age >= 40]}"/>
+	</bean>
+	
+	<bean id="another" class="com.app.AnotherBean">
+		<property name="list" ref="xxx"/>
+	</bean>
+
+</beans>

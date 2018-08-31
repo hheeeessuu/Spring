@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="echo" class="com.app.EchoBean">
+		<constructor-arg name="x" value="홍길동" />
+	</bean>
+	<bean id="echo2" class="com.app.EchoBean">
+		<constructor-arg name="x" value="이순신" />
+	</bean>
+	<bean id="echo3" class="com.app.EchoBean">
+		<constructor-arg name="x" value="유관순" />
+	</bean>
+
+	<util:list id="xxx">
+		<ref bean="echo" />
+		<ref bean="echo2" />
+		<ref bean="echo3" />
+		<ref bean="echo" />
+	</util:list>
+
+	<bean id="another" class="com.app.AnotherBean">
+		<property name="list" ref="xxx"/>
+	</bean>
+
+</beans>
